@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HBM: The Memory Chip Powering the AI Revolution | Tech & Finance Hub</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html" class="logo">Tech & Finance Hub</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="article-header">
+      <a href="../index.html" class="back-link">&larr; Back to Research</a>
+      <span class="tag">Semiconductors</span>
+      <h1>HBM: The Memory Chip Powering the AI Revolution</h1>
+      <p class="subtitle">What is High Bandwidth Memory, why every AI chip needs it, and how Samsung, SK Hynix, and Micron are battling for a $100 billion market.</p>
+      <div class="article-meta">
+        <time>2026-02-21</time>
+        <span>Deep Dive</span>
+        <span>15 min read</span>
+      </div>
+    </div>
+
+    <article class="article-body">
+
+      <!-- ============================================ -->
+      <!-- SECTION 1: What is HBM? -->
+      <!-- ============================================ -->
+      <h2>1. What is HBM?</h2>
+
+      <p>High Bandwidth Memory (HBM) is a type of computer memory that stacks multiple DRAM chips vertically — like a tiny skyscraper of memory — and connects them using microscopic copper pillars called <strong>Through-Silicon Vias (TSVs)</strong>. The result is dramatically more bandwidth than conventional memory, in a much smaller footprint.</p>
+
+      <p>Traditional memory (like DDR5 in your PC) sits flat on a circuit board and connects to the processor through a relatively narrow data highway. HBM takes a fundamentally different approach: it stacks 4, 8, or even 12 layers of memory on top of each other and connects them with thousands of TSVs running vertically through the silicon. This creates a massively wide data highway — <strong>1,024 bits wide</strong> compared to just 64 bits for DDR5.</p>
+
+      <h3>How It Actually Works</h3>
+
+      <p>An HBM stack consists of several key components:</p>
+
+      <ul>
+        <li><strong>DRAM Dies (4-12+ layers):</strong> Standard memory silicon, but thinned down and stacked vertically. Each die contains multiple memory channels.</li>
+        <li><strong>Through-Silicon Vias (TSVs):</strong> Tiny copper pillars etched through each silicon die, allowing signals and power to flow vertically across the entire stack. Thousands of these TSVs run in parallel.</li>
+        <li><strong>Logic/Base Die:</strong> The bottom layer isn't memory — it's a controller chip that manages the entire stack and acts as the bridge to the host processor (GPU, CPU, or AI accelerator).</li>
+        <li><strong>Silicon Interposer:</strong> A flat piece of silicon that sits beneath both the HBM stacks and the processor, acting as a superhighway connecting them side-by-side in a "2.5D" package.</li>
+      </ul>
+
+      <div class="info-box highlight">
+        <h4>Why "Bandwidth" Matters</h4>
+        <p>Think of memory bandwidth like a highway. DDR5 is a 64-lane highway. HBM is a <strong>1,024-lane highway</strong> — 16x wider. Even if each lane isn't faster, the sheer width means vastly more data can move simultaneously. For AI workloads that need to constantly shuttle enormous datasets between memory and compute cores, this is the difference between a bottleneck and full-speed processing.</p>
+      </div>
+
+      <h3>HBM vs. DDR5 vs. GDDR6</h3>
+
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>DDR5</th>
+              <th>GDDR6X</th>
+              <th>HBM3E</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bus Width</td>
+              <td>64-bit</td>
+              <td>32-bit per chip</td>
+              <td>1,024-bit</td>
+            </tr>
+            <tr>
+              <td>Bandwidth (per module)</td>
+              <td>~50 GB/s</td>
+              <td>~84 GB/s</td>
+              <td>~1,200 GB/s</td>
+            </tr>
+            <tr>
+              <td>Power Efficiency</td>
+              <td>Moderate</td>
+              <td>High power draw</td>
+              <td>Best (per bit)</td>
+            </tr>
+            <tr>
+              <td>Form Factor</td>
+              <td>DIMM (flat)</td>
+              <td>Soldered (flat)</td>
+              <td>3D stack on interposer</td>
+            </tr>
+            <tr>
+              <td>Primary Use</td>
+              <td>PCs, servers</td>
+              <td>Gaming GPUs</td>
+              <td>AI accelerators, HPC</td>
+            </tr>
+            <tr>
+              <td>Cost per GB</td>
+              <td>Low</td>
+              <td>Medium</td>
+              <td>3-4x DDR</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- ============================================ -->
+      <!-- SECTION 2: HBM Generations -->
+      <!-- ============================================ -->
+      <h2>2. The Evolution: HBM Generations</h2>
+
+      <p>HBM has evolved rapidly since its introduction in 2013. Each generation has pushed bandwidth higher, stacked more layers, and increased capacity — driven by the insatiable demand of AI workloads.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="year">2013</span>
+          <h4>HBM1</h4>
+          <p>The original. 4-layer stacks with a 1,024-bit bus delivering 128 GB/s bandwidth. Capacity topped out at 4 GB per stack. First used in AMD's Fury X GPU.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="year">2016</span>
+          <h4>HBM2</h4>
+          <p>Doubled speed to 2.4 Gb/s per pin. Supported 4-Hi and 8-Hi stacks, reaching 256 GB/s bandwidth and up to 8 GB per stack. Used in NVIDIA's V100 and Tesla P100.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="year">2019-2020</span>
+          <h4>HBM2E</h4>
+          <p>Pushed data rates to 3.6 Gb/s per pin. Introduced 12-Hi stacking. Achieved 460 GB/s bandwidth and up to 24 GB per stack. Used in NVIDIA A100.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="year">2022</span>
+          <h4>HBM3</h4>
+          <p>Doubled the channels from 8 to 16. Data rates hit 6.4 Gb/s for 819 GB/s bandwidth. Up to 24 GB per stack. Used in NVIDIA H100.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="year">2023-2024</span>
+          <h4>HBM3E</h4>
+          <p>The current workhorse. 9.6 Gb/s data rates delivering 1.2 TB/s per stack. 12-layer stacks reaching 36 GB. Used in NVIDIA H200, B200, and GB300. This is where the real money is right now.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="year">2025-2026</span>
+          <h4>HBM4</h4>
+          <p>JEDEC spec released April 2025. Doubles the bus width to 2,048 bits. Targets 2 TB/s bandwidth per stack. 32 independent channels. Up to 64 GB per stack. Designed for NVIDIA's next-gen "Rubin" architecture.</p>
+        </div>
+      </div>
+
+      <h3>Full Spec Comparison</h3>
+
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Generation</th>
+              <th>Data Rate (Gb/s)</th>
+              <th>Bus Width</th>
+              <th>Bandwidth/Stack</th>
+              <th>Max Capacity</th>
+              <th>Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>HBM1</td>
+              <td>1.0</td>
+              <td>1,024-bit</td>
+              <td>128 GB/s</td>
+              <td>4 GB</td>
+              <td>2013</td>
+            </tr>
+            <tr>
+              <td>HBM2</td>
+              <td>2.4</td>
+              <td>1,024-bit</td>
+              <td>256 GB/s</td>
+              <td>8 GB</td>
+              <td>2016</td>
+            </tr>
+            <tr>
+              <td>HBM2E</td>
+              <td>3.6</td>
+              <td>1,024-bit</td>
+              <td>460 GB/s</td>
+              <td>24 GB</td>
+              <td>2020</td>
+            </tr>
+            <tr>
+              <td>HBM3</td>
+              <td>6.4</td>
+              <td>1,024-bit</td>
+              <td>819 GB/s</td>
+              <td>24 GB</td>
+              <td>2022</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>HBM3E</td>
+              <td>9.6</td>
+              <td>1,024-bit</td>
+              <td>1.2 TB/s</td>
+              <td>36 GB</td>
+              <td>2024</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>HBM4</td>
+              <td>8.0</td>
+              <td>2,048-bit</td>
+              <td>2.0 TB/s</td>
+              <td>64 GB</td>
+              <td>2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box highlight">
+        <h4>Key Insight: HBM4 Doubles the Bus, Not Just the Speed</h4>
+        <p>Notice that HBM4's per-pin data rate (8.0 Gb/s) is actually lower than HBM3E (9.6 Gb/s). The bandwidth leap comes from doubling the interface width from 1,024 to 2,048 bits. This also improves power efficiency — more bandwidth without needing to push each pin harder. HBM4 is expected to burn only 70% of the power of HBM3E for comparable throughput.</p>
+      </div>
+
+
+      <!-- ============================================ -->
+      <!-- SECTION 3: Why HBM Matters Now -->
+      <!-- ============================================ -->
+      <h2>3. Why HBM Matters Now: The AI Memory Wall</h2>
+
+      <p>The explosion of large language models (LLMs) and generative AI has turned HBM from a niche data center component into the most critical bottleneck in AI infrastructure.</p>
+
+      <h3>The Core Problem: Memory-Bound AI</h3>
+
+      <p>Training and running AI models is fundamentally a <strong>memory bandwidth problem</strong>, not just a compute problem. The processor spends more time waiting for data to arrive from memory than actually computing. Higher bandwidth ensures that GPU tensor cores stay fed with data, preventing stalls and maximizing throughput.</p>
+
+      <p>A quick rule of thumb: to serve a large language model in 16-bit precision, you need approximately <strong>2 GB of GPU memory per 1 billion parameters</strong>. A 70B-parameter model like Llama 3 requires 140 GB — already more than a single NVIDIA A100 (80 GB). Models approaching 1 trillion parameters demand multi-GPU setups where HBM capacity is the binding constraint.</p>
+
+      <h3>NVIDIA's GPU Memory Progression</h3>
+
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>GPU</th>
+              <th>Memory Type</th>
+              <th>Capacity</th>
+              <th>Bandwidth</th>
+              <th>Primary Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A100</td>
+              <td>HBM2E</td>
+              <td>80 GB</td>
+              <td>2.0 TB/s</td>
+              <td>Training baseline</td>
+            </tr>
+            <tr>
+              <td>H100</td>
+              <td>HBM3</td>
+              <td>80 GB</td>
+              <td>3.35 TB/s</td>
+              <td>Training & inference</td>
+            </tr>
+            <tr>
+              <td>H200</td>
+              <td>HBM3E</td>
+              <td>141 GB</td>
+              <td>4.8 TB/s</td>
+              <td>Large model inference</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>B200</td>
+              <td>HBM3E</td>
+              <td>192 GB</td>
+              <td>8.0 TB/s</td>
+              <td>Next-gen AI training</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Rubin (R100)</td>
+              <td>HBM4</td>
+              <td>288 GB</td>
+              <td>~13-15 TB/s</td>
+              <td>Future frontier models</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>From A100 to Rubin, each GPU consumes <strong>3.6x more HBM</strong>. This is why the market is exploding — not because there are more GPUs, but because each GPU uses dramatically more memory.</p>
+
+      <h3>Real-World Performance Impact</h3>
+
+      <ul>
+        <li><strong>H200 vs H100:</strong> On Llama 2-70B, the H200 produces 31,712 tokens/second vs 21,806 for H100 — a 45% improvement, almost entirely from better memory bandwidth and capacity.</li>
+        <li><strong>B200 vs H100:</strong> Up to 4x faster training, up to 30x faster inference. The B200's 8 TB/s bandwidth is the primary enabler.</li>
+        <li><strong>Long-context models (128K-1M tokens):</strong> These workloads directly benefit from the H200's 141 GB capacity, reducing the need for expensive model sharding across multiple GPUs.</li>
+      </ul>
+
+      <div class="info-box investor">
+        <h4>Why Investors Should Care</h4>
+        <p>Every major AI company — OpenAI, Google, Meta, Anthropic, xAI — is racing to build larger models and bigger GPU clusters. Each new NVIDIA GPU generation uses more HBM. The demand is structural and growing exponentially. HBM isn't just a component; it's the bottleneck for the entire AI industry.</p>
+      </div>
+
+
+      <!-- ============================================ -->
+      <!-- SECTION 4: The Competition -->
+      <!-- ============================================ -->
+      <h2>4. The HBM Wars: Samsung vs SK Hynix vs Micron</h2>
+
+      <p>Only three companies in the world can manufacture HBM: <strong>SK Hynix</strong> (South Korea), <strong>Samsung</strong> (South Korea), and <strong>Micron</strong> (USA). Their battle for NVIDIA's business — and the AI market — is one of the most consequential competitions in the semiconductor industry.</p>
+
+      <h3>Market Share (Q2 2025)</h3>
+
+      <div class="bar-chart">
+        <div class="bar-item">
+          <div class="bar-label">
+            <span>SK Hynix</span>
+            <span>62%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill blue" style="width: 62%"></div>
+          </div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">
+            <span>Micron</span>
+            <span>21%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill green" style="width: 21%"></div>
+          </div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-label">
+            <span>Samsung</span>
+            <span>17%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill purple" style="width: 17%"></div>
+          </div>
+        </div>
+      </div>
+
+      <h3>SK Hynix: The Undisputed Leader</h3>
+
+      <p>SK Hynix is NVIDIA's primary HBM supplier and the clear winner of the AI memory boom so far.</p>
+
+      <ul>
+        <li><strong>First to mass-produce HBM3E</strong> — locked in as exclusive 12-Hi HBM3E supplier for NVIDIA's GB300.</li>
+        <li><strong>Beat Samsung in annual profit for the first time ever in 2025:</strong> SK Hynix posted 47.2 trillion won operating profit vs Samsung's 43.6 trillion won — a historic reversal.</li>
+        <li><strong>Became the world's largest memory chip supplier</strong> for the first time, overtaking Samsung's 30+ year lead with 36% global DRAM market share (Q1 2025).</li>
+        <li><strong>Stock surged over 200% in 2025,</strong> market cap exceeding 150 trillion won.</li>
+        <li><strong>Already sold out HBM production through 2026.</strong> CEO Kwak Noh-jung confirmed the entire 2026 volume was locked up in H1 2025.</li>
+        <li><strong>Projected 54-70% share of HBM4 market</strong> for NVIDIA's Rubin platform in 2026.</li>
+      </ul>
+
+      <h3>Samsung: Playing Catch-Up</h3>
+
+      <p>Samsung, the world's largest memory maker by overall capacity, has stumbled badly in HBM — and is fighting to recover.</p>
+
+      <ul>
+        <li><strong>Failed NVIDIA's qualification tests</strong> for HBM3E multiple times due to thermal and yield issues. Spent over 18 months trying to get approved.</li>
+        <li><strong>Finally won NVIDIA certification</strong> for 12-layer HBM3E in late 2025 — but as the third supplier after SK Hynix and Micron. Initial volumes are small.</li>
+        <li><strong>Dropped to 17% HBM market share</strong> in Q2 2025, behind Micron. Recovered to ~22% by Q3.</li>
+        <li><strong>Pivoting aggressively to HBM4:</strong> Using cutting-edge 6th-gen DRAM process and 4nm foundry base die. Samsung sees HBM4 as the reset opportunity to close the gap.</li>
+        <li><strong>Won a bright spot with Google:</strong> Emerged as top HBM supplier for Google's AI chips with ~60% share, diversifying beyond NVIDIA dependency.</li>
+        <li><strong>Target: 30%+ HBM market share in 2026</strong> as HBM4 production ramps up.</li>
+      </ul>
+
+      <h3>Micron: The American Challenger</h3>
+
+      <p>The third player has been punching above its weight, especially in power efficiency.</p>
+
+      <ul>
+        <li><strong>HBM3E delivers 30% lower power</strong> than competitors — a critical advantage for data center TCO.</li>
+        <li><strong>Secured design wins in NVIDIA's HGX B200, GB200, HGX B300, and GB300.</strong></li>
+        <li><strong>HBM revenue hit ~$2B in Q4 FY2025,</strong> implying ~$8B annualized run rate. Combined AI memory revenue reached $10B — a 5x year-over-year increase.</li>
+        <li><strong>Entire HBM production sold out through 2026</strong> with pricing agreements locked in.</li>
+        <li><strong>Began shipping HBM4 samples in June 2025</strong> — 36 GB, 12-high stacks delivering 2 TB/s.</li>
+        <li><strong>Fiscal Q1 2026 revenue:</strong> $13.64B, up 57% year-over-year. Gross margins climbed above 50%.</li>
+      </ul>
+
+      <div class="info-box highlight">
+        <h4>The Historic Reversal: SK Hynix Overtakes Samsung</h4>
+        <p>In 2025, SK Hynix surpassed Samsung in both annual operating profit and DRAM market share — <strong>the first time in history</strong> the smaller company beat Samsung's 30+ year memory dominance. The cause? HBM. SK Hynix, acquired by SK Telecom for just $3B in 2012, is now the most valuable memory company in the world, thanks to its early bet on stacking memory for AI.</p>
+      </div>
+
+
+      <!-- ============================================ -->
+      <!-- SECTION 5: Manufacturing Challenges -->
+      <!-- ============================================ -->
+      <h2>5. Why HBM Is So Hard to Make</h2>
+
+      <p>HBM is not just expensive — it's one of the most technically challenging products in the semiconductor industry. This is why only three companies can make it, and why supply is perpetually constrained.</p>
+
+      <ul>
+        <li><strong>TSV Yield:</strong> Etching thousands of microscopic copper pillars through silicon with perfect alignment across 8-12 layers is extraordinarily difficult. Current yields hover between 50-60%.</li>
+        <li><strong>Wafer Cannibalization:</strong> HBM requires ~2x the wafer area of standard DRAM for the same number of bits. Every HBM chip produced "cannibalizes" the capacity of 3-4 standard PC RAM chips.</li>
+        <li><strong>Thermal Management:</strong> Stacking 12 layers of active silicon creates heat density problems. Samsung's early HBM3E failures were largely thermal issues.</li>
+        <li><strong>Wafer Thinning:</strong> Each die in the stack must be thinned from the standard ~750 micrometers to about 50 micrometers (for 12-layer) or even 30 micrometers (for the coming 16-layer HBM4). At these thicknesses, silicon becomes fragile.</li>
+        <li><strong>Packaging Complexity:</strong> The silicon interposer that connects HBM stacks to the processor is itself a major cost and yield challenge.</li>
+      </ul>
+
+      <div class="info-box warning">
+        <h4>The 16-Layer Challenge</h4>
+        <p>NVIDIA has requested 16-layer HBM4 chips by Q4 2026. Industry experts warn: "The transition from 12 to 16 layers is technically much harder than from 8 to 12. The manufacturing process itself has to change." Wafer thickness needs to drop to ~30 micrometers. This is at the bleeding edge of what's physically possible.</p>
+      </div>
+
+
+      <!-- ============================================ -->
+      <!-- SECTION 6: Market & Investment -->
+      <!-- ============================================ -->
+      <h2>6. The Investment Case: A $100 Billion Market</h2>
+
+      <h3>Market Size Projections</h3>
+
+      <div class="spec-table-wrapper">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>HBM Market Size</th>
+              <th>Growth</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2024</td>
+              <td>~$20B</td>
+              <td>~100% YoY</td>
+              <td>HBM3E ramp begins</td>
+            </tr>
+            <tr>
+              <td>2025</td>
+              <td>~$35-38B</td>
+              <td>~75% YoY</td>
+              <td>HBM3E dominant</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>2026</td>
+              <td>~$55-58B</td>
+              <td>~55% YoY</td>
+              <td>HBM4 enters production</td>
+            </tr>
+            <tr>
+              <td>2028</td>
+              <td>~$100B</td>
+              <td>~40% CAGR</td>
+              <td>Projected to exceed entire 2024 DRAM market</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Why HBM Is So Profitable</h3>
+
+      <ul>
+        <li><strong>Pricing premium:</strong> The per-bit cost of HBM is ~3x DDR (rising to 4x for HBM4). But selling price is ~6x DDR (8x for HBM4), reflecting the extreme demand-supply imbalance.</li>
+        <li><strong>Gross margins:</strong> HBM gross margins are estimated at ~70%, far above standard DRAM (~40-50%). This is why SK Hynix's profits exploded.</li>
+        <li><strong>Supply is sold out through 2026</strong> across all three manufacturers. Memory production for calendar 2026 is sold out, including HBM4. Tight conditions are expected to persist beyond 2026.</li>
+      </ul>
+
+      <h3>Revenue Impact on Key Companies</h3>
+
+      <ul>
+        <li><strong>SK Hynix:</strong> HBM accounted for 77% of revenues in Q2 2025. Record 47.2 trillion won operating profit in 2025. Stock up 200%+ in 2025.</li>
+        <li><strong>Micron:</strong> HBM + server DRAM hit $10B revenue (5x YoY). Gross margins above 50%, doubled from 22% in FY2024.</li>
+        <li><strong>Samsung:</strong> Memory operating profit ~24.9 trillion won in 2025. Below SK Hynix despite larger overall capacity — the HBM gap explains the difference.</li>
+      </ul>
+
+      <div class="info-box investor">
+        <h4>The Bull Case</h4>
+        <p><strong>Structural demand:</strong> AI model sizes are growing faster than Moore's Law. Each new NVIDIA GPU uses 3.6x more HBM. The AI memory supercycle could push HBM to 35% of all DRAM revenue and 50% of margins by 2028. Memory has gone from a cyclical commodity to the most critical AI infrastructure constraint.</p>
+      </div>
+
+      <div class="info-box warning">
+        <h4>Risks to Watch</h4>
+        <p><strong>Cyclicality concern:</strong> Analysts warn of a possible 2026-2027 correction as supply catches up. Samsung's qualification + Micron's expansion could lead to "bits up but pricing down." The per-bit cost of HBM is also cannibalizing standard DRAM production, which is creating a separate DRAM shortage that could affect pricing dynamics across the entire memory industry.</p>
+        <p><strong>Geopolitical risk:</strong> Both SK Hynix and Samsung are in South Korea. Any geopolitical disruption could impact 80%+ of global HBM supply. SK Hynix is reviewing a possible U.S. stock listing to address the "Korea discount" on its valuation.</p>
+      </div>
+
+
+      <!-- ============================================ -->
+      <!-- SECTION 7: What's Next -->
+      <!-- ============================================ -->
+      <h2>7. What's Next: HBM4, Rubin, and Beyond</h2>
+
+      <p>The HBM story is far from over. Here's what's coming:</p>
+
+      <ul>
+        <li><strong>HBM4 mass production (early 2026):</strong> Samsung and SK Hynix have both fast-tracked production by ~6 months to supply NVIDIA's Rubin architecture. NVIDIA may relax specs (accepting 10.6 Gb/s alongside 11.7 Gb/s) to ensure adequate supply from all three vendors.</li>
+        <li><strong>16-layer HBM4 (late 2026):</strong> NVIDIA wants 16-Hi stacks by Q4 2026. This requires wafer thinning to ~30 micrometers — a major manufacturing challenge. All three makers have begun development.</li>
+        <li><strong>Capacity explosion:</strong> From the A100's 80 GB of HBM2E to a projected 1,024 GB (1 TB) of HBM4E for NVIDIA's Rubin Ultra. The demand curve is exponential.</li>
+        <li><strong>DRAM market shift:</strong> By 2033, HBM is expected to represent over 50% of global DRAM market value while being only 10% of total bit shipments — showing the extreme value concentration.</li>
+        <li><strong>Broader semiconductor context:</strong> The global semiconductor market is projected to hit ~$975B in 2026, with the memory segment growing at 30%. HBM is the highest-growth, highest-margin segment within that.</li>
+      </ul>
+
+      <div class="info-box highlight">
+        <h4>Bottom Line</h4>
+        <p>HBM is no longer a niche technology — it's the critical enabler of the entire AI revolution. The three companies that can manufacture it are positioned at the center of the most important technology trend of the decade. Understanding HBM is essential for anyone analyzing the semiconductor industry, AI infrastructure, or tech investing in 2026 and beyond.</p>
+      </div>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>Tech & Finance Learning Hub &mdash; A personal research knowledge base</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

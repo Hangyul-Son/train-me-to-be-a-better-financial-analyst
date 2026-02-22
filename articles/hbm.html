@@ -33,28 +33,187 @@
     <article class="article-body">
 
       <!-- ============================================ -->
-      <!-- SECTION 1: What is HBM? -->
+      <!-- SECTION 1: Anatomy of an HBM Stack -->
       <!-- ============================================ -->
-      <h2>1. What is HBM?</h2>
+      <h2>1. Anatomy of an HBM Stack</h2>
 
-      <p>High Bandwidth Memory (HBM) is a type of computer memory that stacks multiple DRAM chips vertically — like a tiny skyscraper of memory — and connects them using microscopic copper pillars called <strong>Through-Silicon Vias (TSVs)</strong>. The result is dramatically more bandwidth than conventional memory, in a much smaller footprint.</p>
+      <p>HBM stacks multiple DRAM chips vertically and connects them with microscopic copper pillars called <strong>Through-Silicon Vias (TSVs)</strong>. Here's exactly what's inside:</p>
 
-      <p>Traditional memory (like DDR5 in your PC) sits flat on a circuit board and connects to the processor through a relatively narrow data highway. HBM takes a fundamentally different approach: it stacks 4, 8, or even 12 layers of memory on top of each other and connects them with thousands of TSVs running vertically through the silicon. This creates a massively wide data highway — <strong>1,024 bits wide</strong> compared to just 64 bits for DDR5.</p>
+      <!-- DIAGRAM 1: HBM Stack Cross-Section -->
+      <div class="diagram-container">
+        <div class="diagram-title">Cross-Section of an 8-Hi HBM3E Stack</div>
+        <svg viewBox="0 0 920 600" xmlns="http://www.w3.org/2000/svg" width="100%" role="img" aria-label="HBM Stack Cross-Section Diagram">
+          <!-- Background grid subtle -->
+          <defs>
+            <linearGradient id="dramGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1e40af" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#1e3a5f" stop-opacity="0.6"/>
+            </linearGradient>
+            <linearGradient id="baseGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#6d28d9" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#3b1578" stop-opacity="0.6"/>
+            </linearGradient>
+            <linearGradient id="interGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1d4ed8" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#1a3352" stop-opacity="0.5"/>
+            </linearGradient>
+          </defs>
 
-      <h3>How It Actually Works</h3>
+          <!-- === ORGANIC SUBSTRATE (bottom) === -->
+          <rect x="110" y="555" width="500" height="32" rx="3" fill="#3d2f1f" stroke="#7a6244" stroke-width="1.5"/>
+          <text x="360" y="575" text-anchor="middle" fill="#c4a46c" font-size="11" font-family="system-ui, sans-serif" font-weight="500">Organic Substrate (PCB)</text>
 
-      <p>An HBM stack consists of several key components:</p>
+          <!-- === C4 BUMPS (large solder balls) === -->
+          <circle cx="175" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="220" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="265" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="310" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="355" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="400" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="445" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="490" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
+          <circle cx="535" cy="545" r="6" fill="#fb923c" opacity="0.85"/>
 
-      <ul>
-        <li><strong>DRAM Dies (4-12+ layers):</strong> Standard memory silicon, but thinned down and stacked vertically. Each die contains multiple memory channels.</li>
-        <li><strong>Through-Silicon Vias (TSVs):</strong> Tiny copper pillars etched through each silicon die, allowing signals and power to flow vertically across the entire stack. Thousands of these TSVs run in parallel.</li>
-        <li><strong>Logic/Base Die:</strong> The bottom layer isn't memory — it's a controller chip that manages the entire stack and acts as the bridge to the host processor (GPU, CPU, or AI accelerator).</li>
-        <li><strong>Silicon Interposer:</strong> A flat piece of silicon that sits beneath both the HBM stacks and the processor, acting as a superhighway connecting them side-by-side in a "2.5D" package.</li>
-      </ul>
+          <!-- === SILICON INTERPOSER === -->
+          <rect x="80" y="505" width="560" height="32" rx="3" fill="url(#interGrad)" stroke="#3b82f6" stroke-width="1.5"/>
+          <text x="360" y="525" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="system-ui, sans-serif" font-weight="500">Silicon Interposer</text>
+
+          <!-- === MICRO BUMPS (interposer to base die) === -->
+          <circle cx="215" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="250" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="285" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="320" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="355" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="390" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="425" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="460" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+          <circle cx="495" cy="498" r="2.5" fill="#34d399" opacity="0.8"/>
+
+          <!-- === BASE / LOGIC DIE === -->
+          <rect x="195" y="465" width="330" height="28" rx="3" fill="url(#baseGrad)" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="360" y="483" text-anchor="middle" fill="#c4b5fd" font-size="11" font-family="system-ui, sans-serif" font-weight="600">Base / Logic Die (Controller)</text>
+
+          <!-- === TSVs (drawn behind DRAM dies, copper pillars) === -->
+          <g opacity="0.55">
+            <rect x="238" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+            <rect x="274" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+            <rect x="310" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+            <rect x="346" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+            <rect x="382" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+            <rect x="418" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+            <rect x="454" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+            <rect x="490" y="195" width="4" height="268" rx="1" fill="#d97706"/>
+          </g>
+
+          <!-- === MICRO BUMPS (base die to DRAM Die 1) === -->
+          <circle cx="240" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+          <circle cx="276" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+          <circle cx="312" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+          <circle cx="348" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+          <circle cx="384" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+          <circle cx="420" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+          <circle cx="456" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+          <circle cx="492" cy="458" r="2" fill="#34d399" opacity="0.7"/>
+
+          <!-- === DRAM DIES (8 layers, bottom to top) === -->
+          <!-- Die 1 (bottom) -->
+          <rect x="195" y="430" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="446" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 1</text>
+          <!-- Die 2 -->
+          <rect x="195" y="400" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="416" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 2</text>
+          <!-- Die 3 -->
+          <rect x="195" y="370" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="386" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 3</text>
+          <!-- Die 4 -->
+          <rect x="195" y="340" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="356" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 4</text>
+          <!-- Die 5 -->
+          <rect x="195" y="310" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="326" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 5</text>
+          <!-- Die 6 -->
+          <rect x="195" y="280" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="296" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 6</text>
+          <!-- Die 7 -->
+          <rect x="195" y="250" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="266" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 7</text>
+          <!-- Die 8 (top) -->
+          <rect x="195" y="220" width="330" height="24" rx="2" fill="url(#dramGrad)" stroke="#60a5fa" stroke-width="1"/>
+          <text x="360" y="236" text-anchor="middle" fill="#93c5fd" font-size="9.5" font-family="system-ui, sans-serif">DRAM Die 8</text>
+
+          <!-- Micro bump dots between each DRAM die pair -->
+          <g fill="#34d399" opacity="0.5">
+            <!-- Between Die 1-2 -->
+            <circle cx="270" cy="427" r="1.5"/><circle cx="340" cy="427" r="1.5"/><circle cx="410" cy="427" r="1.5"/><circle cx="450" cy="427" r="1.5"/>
+            <!-- Between Die 2-3 -->
+            <circle cx="270" cy="397" r="1.5"/><circle cx="340" cy="397" r="1.5"/><circle cx="410" cy="397" r="1.5"/><circle cx="450" cy="397" r="1.5"/>
+            <!-- Between Die 3-4 -->
+            <circle cx="270" cy="367" r="1.5"/><circle cx="340" cy="367" r="1.5"/><circle cx="410" cy="367" r="1.5"/><circle cx="450" cy="367" r="1.5"/>
+            <!-- Between Die 4-5 -->
+            <circle cx="270" cy="337" r="1.5"/><circle cx="340" cy="337" r="1.5"/><circle cx="410" cy="337" r="1.5"/><circle cx="450" cy="337" r="1.5"/>
+            <!-- Between Die 5-6 -->
+            <circle cx="270" cy="307" r="1.5"/><circle cx="340" cy="307" r="1.5"/><circle cx="410" cy="307" r="1.5"/><circle cx="450" cy="307" r="1.5"/>
+            <!-- Between Die 6-7 -->
+            <circle cx="270" cy="277" r="1.5"/><circle cx="340" cy="277" r="1.5"/><circle cx="410" cy="277" r="1.5"/><circle cx="450" cy="277" r="1.5"/>
+            <!-- Between Die 7-8 -->
+            <circle cx="270" cy="247" r="1.5"/><circle cx="340" cy="247" r="1.5"/><circle cx="410" cy="247" r="1.5"/><circle cx="450" cy="247" r="1.5"/>
+          </g>
+
+          <!-- ============ RIGHT-SIDE LABELS ============ -->
+          <!-- DRAM stack label -->
+          <line x1="530" y1="232" x2="575" y2="232" stroke="#6b7280" stroke-width="1"/>
+          <line x1="530" y1="442" x2="575" y2="442" stroke="#6b7280" stroke-width="1"/>
+          <line x1="575" y1="232" x2="575" y2="442" stroke="#6b7280" stroke-width="1"/>
+          <line x1="575" y1="337" x2="590" y2="337" stroke="#6b7280" stroke-width="1"/>
+          <text x="598" y="330" fill="#e4e4e7" font-size="11" font-family="system-ui, sans-serif" font-weight="600">8 DRAM Dies</text>
+          <text x="598" y="345" fill="#9ca3af" font-size="10" font-family="system-ui, sans-serif">(~50 &micro;m each)</text>
+
+          <!-- TSV label -->
+          <line x1="498" y1="290" x2="540" y2="275" stroke="#d97706" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="545" y="270" fill="#fbbf24" font-size="10.5" font-family="system-ui, sans-serif" font-weight="600">TSVs (copper)</text>
+          <text x="545" y="283" fill="#9ca3af" font-size="9.5" font-family="system-ui, sans-serif">~5 &micro;m diameter</text>
+
+          <!-- Base die label -->
+          <line x1="530" y1="479" x2="598" y2="479" stroke="#6b7280" stroke-width="1"/>
+          <text x="605" y="475" fill="#c4b5fd" font-size="11" font-family="system-ui, sans-serif" font-weight="600">Base / Logic Die</text>
+          <text x="605" y="489" fill="#9ca3af" font-size="10" font-family="system-ui, sans-serif">Stack controller</text>
+
+          <!-- Micro bump label -->
+          <line x1="500" y1="498" x2="598" y2="510" stroke="#6b7280" stroke-width="1"/>
+          <text x="605" y="507" fill="#34d399" font-size="11" font-family="system-ui, sans-serif" font-weight="600">Micro Bumps</text>
+          <text x="605" y="520" fill="#9ca3af" font-size="10" font-family="system-ui, sans-serif">~40 &micro;m pitch</text>
+
+          <!-- Interposer label -->
+          <line x1="645" y1="521" x2="680" y2="540" stroke="#6b7280" stroke-width="1"/>
+          <text x="685" y="537" fill="#60a5fa" font-size="11" font-family="system-ui, sans-serif" font-weight="600">Silicon Interposer</text>
+          <text x="685" y="550" fill="#9ca3af" font-size="10" font-family="system-ui, sans-serif">Connects HBM to GPU</text>
+
+          <!-- C4 bump label -->
+          <line x1="545" y1="545" x2="598" y2="560" stroke="#6b7280" stroke-width="1"/>
+          <text x="605" y="562" fill="#fb923c" font-size="11" font-family="system-ui, sans-serif" font-weight="600">C4 Bumps</text>
+          <text x="605" y="575" fill="#9ca3af" font-size="10" font-family="system-ui, sans-serif">~100 &micro;m pitch</text>
+
+          <!-- === LEFT-SIDE: Bus Width Annotation === -->
+          <line x1="195" y1="592" x2="525" y2="592" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4,3"/>
+          <polygon points="195,589 195,595 188,592" fill="#60a5fa"/>
+          <polygon points="525,589 525,595 532,592" fill="#60a5fa"/>
+          <text x="360" y="607" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="system-ui, sans-serif" font-weight="600">1,024-bit Interface (16 channels x 64 bits)</text>
+
+          <!-- === LEFT-SIDE: Stack Height Annotation === -->
+          <line x1="175" y1="220" x2="175" y2="493" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+          <polygon points="172,220 178,220 175,213" fill="#9ca3af"/>
+          <polygon points="172,493 178,493 175,500" fill="#9ca3af"/>
+          <text x="170" y="360" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="system-ui, sans-serif" transform="rotate(-90, 170, 360)">~720 &micro;m total height</text>
+
+          <!-- Title / top annotation -->
+          <text x="360" y="200" text-anchor="middle" fill="#6b7280" font-size="10" font-family="system-ui, sans-serif" font-style="italic">Top of stack (heat spreader interface)</text>
+        </svg>
+        <div class="diagram-caption">Cross-section of an 8-Hi HBM3E stack. TSVs (copper) run vertically through all DRAM layers, connecting to the base logic die, which interfaces with the silicon interposer via micro bumps.</div>
+      </div>
 
       <div class="info-box highlight">
         <h4>Why "Bandwidth" Matters</h4>
-        <p>Think of memory bandwidth like a highway. DDR5 is a 64-lane highway. HBM is a <strong>1,024-lane highway</strong> — 16x wider. Even if each lane isn't faster, the sheer width means vastly more data can move simultaneously. For AI workloads that need to constantly shuttle enormous datasets between memory and compute cores, this is the difference between a bottleneck and full-speed processing.</p>
+        <p>DDR5 has a 64-bit bus. HBM has a <strong>1,024-bit bus</strong> — 16x wider. Even at the same clock speed, 16x more data moves per cycle. For AI workloads that constantly shuttle enormous matrices between memory and compute, this is the difference between a bottleneck and full-speed processing.</p>
       </div>
 
       <h3>HBM vs. DDR5 vs. GDDR6</h3>

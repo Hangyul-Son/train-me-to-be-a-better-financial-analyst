@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - claude/build-tech-finance-site-HRNbI
-      - claude/chinese-learning-app-ZzlfS
       - main
 
 permissions:

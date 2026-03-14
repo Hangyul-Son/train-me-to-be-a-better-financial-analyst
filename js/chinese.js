@@ -274,7 +274,7 @@ const toneQuizData = [
 
 // ===== APP STATE =====
 const state = {
-  currentLevel: 1,
+  currentLevel: 4,
   currentTab: 'dashboard',
   flashcardIndex: 0,
   flashcardDeck: [],

@@ -143,7 +143,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // ── Game State ──
-let currentLevel = 1;
+let currentLevel = 4;
 let vocab = [];
 let vocabIndex = 0;
 let gameRunning = false;

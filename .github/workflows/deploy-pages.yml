@@ -24,19 +24,23 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure Pages source to gh-pages branch
-        uses: actions/github-script@v7
-        with:
-          script: |
-            try {
-              await github.rest.repos.updateInformationAboutPagesSite({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                source: { branch: 'gh-pages', path: '/' }
-              });
-              console.log('Pages source updated to gh-pages branch');
-            } catch (e) {
-              console.log('Pages config update:', e.message);
-            }
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Updating GitHub Pages source to gh-pages branch..."
+          HTTP_CODE=$(curl -s -o /tmp/pages-response.json -w "%{http_code}" \
+            -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}')
+          echo "HTTP response code: $HTTP_CODE"
+          cat /tmp/pages-response.json
+          if [ "$HTTP_CODE" = "204" ] || [ "$HTTP_CODE" = "200" ]; then
+            echo "Pages source successfully updated to gh-pages branch"
+          else
+            echo "Note: Could not update Pages source (code: $HTTP_CODE), continuing with deployment..."
+          fi
 
       - name: Deploy to gh-pages branch
         uses: JamesIves/github-pages-deploy-action@v4

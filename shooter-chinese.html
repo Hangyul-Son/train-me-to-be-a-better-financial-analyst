@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슈팅 x 중국어 - 비행기 게임으로 중국어 배우기</title>
+  <link rel="stylesheet" href="css/shooter-chinese.css">
+</head>
+<body>
+  <div class="game-wrapper">
+    <header class="game-header">
+      <nav>
+        <a href="chinese.html" class="logo">✈️ 슈팅 x 中文</a>
+        <ul class="nav-links">
+          <li><a href="chinese.html">중문학습</a></li>
+          <li><a href="tetris-chinese.html">테트리스</a></li>
+          <li><a href="index.html">메인</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="game-container">
+      <!-- Left: Learning Stats Panel -->
+      <aside class="side-panel left-panel">
+        <div class="panel-section">
+          <h3>학습 현황</h3>
+          <div class="stat-row"><span>처치한 적</span><span id="kills-count">0</span></div>
+          <div class="stat-row"><span>맞춘 단어</span><span id="words-correct">0</span></div>
+          <div class="stat-row"><span>틀린 단어</span><span id="words-wrong">0</span></div>
+          <div class="stat-row"><span>정답률</span><span id="accuracy">0%</span></div>
+        </div>
+        <div class="panel-section">
+          <h3>연속 정답</h3>
+          <div class="streak-display" id="streak-display">🔥 0</div>
+        </div>
+        <div class="panel-section">
+          <h3>HSK 레벨</h3>
+          <div class="level-selector-mini">
+            <button class="lvl-btn active" data-level="1">1</button>
+            <button class="lvl-btn" data-level="2">2</button>
+            <button class="lvl-btn" data-level="3">3</button>
+            <button class="lvl-btn" data-level="4">4</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center: Game Canvas -->
+      <div class="game-area">
+        <canvas id="gameCanvas" width="480" height="720"></canvas>
+
+        <!-- Start Overlay -->
+        <div class="overlay" id="start-overlay">
+          <h1>✈️ 슈팅 x 中文</h1>
+          <p>적을 격추하면서 중국어를 배워보세요!</p>
+          <div class="instructions">
+            <p>🎮 방향키/WASD: 이동</p>
+            <p>🔫 스페이스바: 발사 (자동발사)</p>
+            <p>📚 적 격추 → 단어 학습!</p>
+          </div>
+          <button class="game-btn" id="start-btn">게임 시작</button>
+        </div>
+
+        <!-- Vocab Popup (appears when enemy killed) -->
+        <div class="overlay vocab-overlay" id="vocab-overlay" style="display:none;">
+          <div class="vocab-popup">
+            <div class="vocab-chinese" id="vocab-chinese">你好</div>
+            <div class="vocab-pinyin" id="vocab-pinyin">nǐ hǎo</div>
+            <div class="vocab-korean" id="vocab-korean">안녕하세요</div>
+            <div class="vocab-timer-bar"><div class="vocab-timer-fill" id="vocab-timer-fill"></div></div>
+          </div>
+        </div>
+
+        <!-- Quiz Overlay (periodic quiz) -->
+        <div class="overlay quiz-overlay" id="quiz-overlay" style="display:none;">
+          <div class="quiz-popup">
+            <h2>📝 중국어 퀴즈!</h2>
+            <div class="quiz-question-text" id="sq-question">이 단어의 뜻은?</div>
+            <div class="quiz-prompt-text" id="sq-prompt">你好</div>
+            <div class="quiz-hint-text" id="sq-hint"></div>
+            <div class="quiz-choices" id="sq-choices"></div>
+            <div class="quiz-result" id="sq-result"></div>
+          </div>
+        </div>
+
+        <!-- Game Over Overlay -->
+        <div class="overlay" id="gameover-overlay" style="display:none;">
+          <h1>게임 오버</h1>
+          <div class="final-stats">
+            <p>점수: <span id="final-score">0</span></p>
+            <p>격추: <span id="final-kills">0</span></p>
+            <p>학습 단어: <span id="final-words">0</span></p>
+            <p>정답률: <span id="final-accuracy">0%</span></p>
+          </div>
+          <div class="wrong-words-review" id="wrong-review" style="display:none;">
+            <h3>복습이 필요한 단어</h3>
+            <div id="wrong-words-list"></div>
+          </div>
+          <button class="game-btn" id="restart-btn">다시 하기</button>
+        </div>
+      </div>
+
+      <!-- Right: Recently Learned Words -->
+      <aside class="side-panel right-panel">
+        <div class="panel-section">
+          <h3>점수</h3>
+          <div class="score-display" id="score-display">0</div>
+        </div>
+        <div class="panel-section">
+          <h3>최근 배운 단어</h3>
+          <div class="recent-words" id="recent-words">
+            <p class="empty-msg">적을 격추하면 단어가 나타납니다!</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+      <div class="mobile-row">
+        <button class="mobile-btn" id="m-up">▲</button>
+      </div>
+      <div class="mobile-row">
+        <button class="mobile-btn" id="m-left">◀</button>
+        <button class="mobile-btn fire-btn" id="m-fire">🔫</button>
+        <button class="mobile-btn" id="m-right">▶</button>
+      </div>
+      <div class="mobile-row">
+        <button class="mobile-btn" id="m-down">▼</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/shooter-chinese.js"></script>
+</body>
+</html>

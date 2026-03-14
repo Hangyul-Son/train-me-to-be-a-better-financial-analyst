@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>테트리스 중국어 - Tetris x 中文</title>
+  <link rel="stylesheet" href="css/tetris-chinese.css">
+</head>
+<body>
+  <div class="game-wrapper">
+    <header class="game-header">
+      <a href="chinese.html" class="back-btn">← 중국어 학습</a>
+      <h1 class="game-title">俄罗斯方块 <span>x</span> 中文学习</h1>
+      <a href="index.html" class="back-btn">메인 →</a>
+    </header>
+
+    <div class="game-container">
+      <!-- Left Panel: Stats & Next Block -->
+      <div class="side-panel left-panel">
+        <div class="panel-box">
+          <h3>다음 블록</h3>
+          <canvas id="next-canvas" width="120" height="120"></canvas>
+        </div>
+        <div class="panel-box">
+          <h3>점수</h3>
+          <div class="score-display" id="score">0</div>
+        </div>
+        <div class="panel-box">
+          <h3>레벨</h3>
+          <div class="score-display" id="level">1</div>
+        </div>
+        <div class="panel-box">
+          <h3>줄 제거</h3>
+          <div class="score-display" id="lines">0</div>
+        </div>
+        <div class="panel-box">
+          <h3>학습 단어</h3>
+          <div class="score-display" id="words-learned">0</div>
+        </div>
+        <div class="panel-box hsk-selector">
+          <h3>HSK 레벨</h3>
+          <div class="hsk-buttons">
+            <button class="hsk-btn active" data-level="1">1</button>
+            <button class="hsk-btn" data-level="2">2</button>
+            <button class="hsk-btn" data-level="3">3</button>
+            <button class="hsk-btn" data-level="4">4</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Game Board -->
+      <div class="game-center">
+        <canvas id="game-canvas" width="300" height="600"></canvas>
+
+        <!-- Quiz Overlay -->
+        <div class="quiz-overlay" id="quiz-overlay">
+          <div class="quiz-box">
+            <h2 id="quiz-title">이 한자의 뜻은?</h2>
+            <div class="quiz-character" id="quiz-char">你好</div>
+            <div class="quiz-pinyin" id="quiz-pinyin">nǐ hǎo</div>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-result" id="quiz-result"></div>
+            <div class="quiz-timer-bar">
+              <div class="quiz-timer-fill" id="quiz-timer"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game Over Overlay -->
+        <div class="gameover-overlay" id="gameover-overlay">
+          <div class="gameover-box">
+            <h2>游戏结束</h2>
+            <p class="gameover-sub">게임 오버!</p>
+            <div class="final-stats">
+              <div class="final-stat">
+                <span class="final-label">점수</span>
+                <span class="final-value" id="final-score">0</span>
+              </div>
+              <div class="final-stat">
+                <span class="final-label">줄 제거</span>
+                <span class="final-value" id="final-lines">0</span>
+              </div>
+              <div class="final-stat">
+                <span class="final-label">학습 단어</span>
+                <span class="final-value" id="final-words">0</span>
+              </div>
+              <div class="final-stat">
+                <span class="final-label">퀴즈 정답률</span>
+                <span class="final-value" id="final-accuracy">0%</span>
+              </div>
+            </div>
+            <button class="play-btn" id="restart-btn">다시 시작 再来一次</button>
+          </div>
+        </div>
+
+        <!-- Start Overlay -->
+        <div class="start-overlay" id="start-overlay">
+          <div class="start-box">
+            <h2>俄罗斯方块 x 中文</h2>
+            <p>테트리스로 중국어 배우기</p>
+            <div class="start-rules">
+              <div class="rule">
+                <span class="rule-icon">🎮</span>
+                <span>블록에 한자가 표시됩니다</span>
+              </div>
+              <div class="rule">
+                <span class="rule-icon">📝</span>
+                <span>줄을 완성하면 퀴즈가 나옵니다</span>
+              </div>
+              <div class="rule">
+                <span class="rule-icon">⭐</span>
+                <span>정답 시 보너스 점수!</span>
+              </div>
+              <div class="rule">
+                <span class="rule-icon">⌨️</span>
+                <span>←→: 이동 | ↑: 회전 | ↓: 빠르게 | Space: 즉시 드롭</span>
+              </div>
+            </div>
+            <button class="play-btn" id="start-btn">게임 시작 开始游戏</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel: Word List -->
+      <div class="side-panel right-panel">
+        <div class="panel-box vocab-box">
+          <h3>현재 블록 단어</h3>
+          <div class="current-word" id="current-word">
+            <div class="cw-chinese">-</div>
+            <div class="cw-pinyin">-</div>
+            <div class="cw-korean">-</div>
+          </div>
+        </div>
+        <div class="panel-box">
+          <h3>최근 학습 단어</h3>
+          <div class="recent-words" id="recent-words">
+            <p class="empty-msg">게임을 시작하세요!</p>
+          </div>
+        </div>
+        <div class="panel-box controls-box">
+          <h3>조작법</h3>
+          <div class="controls-list">
+            <div class="control-item"><kbd>←</kbd><span>왼쪽</span></div>
+            <div class="control-item"><kbd>→</kbd><span>오른쪽</span></div>
+            <div class="control-item"><kbd>↑</kbd><span>회전</span></div>
+            <div class="control-item"><kbd>↓</kbd><span>소프트 드롭</span></div>
+            <div class="control-item"><kbd>Space</kbd><span>하드 드롭</span></div>
+            <div class="control-item"><kbd>P</kbd><span>일시정지</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+      <button class="mobile-btn" id="btn-left">◀</button>
+      <button class="mobile-btn" id="btn-rotate">↻</button>
+      <button class="mobile-btn" id="btn-down">▼</button>
+      <button class="mobile-btn" id="btn-drop">⏬</button>
+      <button class="mobile-btn" id="btn-right">▶</button>
+    </div>
+  </div>
+
+  <script src="js/tetris-chinese.js"></script>
+</body>
+</html>

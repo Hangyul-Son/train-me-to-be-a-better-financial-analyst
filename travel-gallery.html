@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Travel Memories</title>
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Our Travel Memories</h1>
+      <p class="hero-subtitle">소중한 여행의 순간들</p>
+      <div class="scroll-indicator">
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="gallery-nav">
+    <a href="index.html" class="back-link">&larr; Back to Hub</a>
+    <span class="nav-title">Travel Gallery</span>
+  </nav>
+
+  <!-- Gallery Section -->
+  <main class="gallery-container">
+    <section class="gallery-intro">
+      <h2>우리의 여행 이야기</h2>
+      <p>함께한 여행의 아름다운 순간들을 모았습니다.</p>
+    </section>
+
+    <div class="gallery-grid">
+      <!-- Photo 1 -->
+      <div class="gallery-item size-large" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo1.jpg" alt="Travel photo 1" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 2 -->
+      <div class="gallery-item size-medium" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo2.jpg" alt="Travel photo 2" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 3 -->
+      <div class="gallery-item size-medium" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo3.jpg" alt="Travel photo 3" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 4 -->
+      <div class="gallery-item size-small" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo4.jpg" alt="Travel photo 4" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 5 -->
+      <div class="gallery-item size-small" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo5.jpg" alt="Travel photo 5" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 6 -->
+      <div class="gallery-item size-large" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo6.jpg" alt="Travel photo 6" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 7 -->
+      <div class="gallery-item size-medium" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo7.jpg" alt="Travel photo 7" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 8 -->
+      <div class="gallery-item size-small" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo8.jpg" alt="Travel photo 8" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 9 -->
+      <div class="gallery-item size-medium" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo9.jpg" alt="Travel photo 9" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 9</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo 10 -->
+      <div class="gallery-item size-large" data-aos="fade-up">
+        <div class="photo-wrapper">
+          <img src="photos/photo10.jpg" alt="Travel photo 10" loading="lazy">
+          <div class="photo-overlay">
+            <span class="photo-caption">여행 사진 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#10094;</button>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next">&#10095;</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+      <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="gallery-footer">
+    <p>Made with love &hearts; Our Travel Memories</p>
+  </footer>
+
+  <script src="js/gallery.js"></script>
+</body>
+</html>
